@@ -1,3 +1,7 @@
+/**
+ * Alpha stage. Currently intended for personally use only. I will develop for public use soon
+ */
+
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -7,20 +11,19 @@ const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY;
 
 router.get('/', function (req, res) {
   res.render('service-home', {
-    title: `${config.ASSISTANT_NAME} Chat Service`,
+    title: `${config.ASSISTANT_NAME} Notification Service`,
     assistantName: config.ASSISTANT_NAME,
-    serviceName: 'Telegram Chat',
+    serviceName: 'Telegram Notification',
     serviceUrl: '#'
   });
 });
 
-router.post('/telegram-new-message', function (req, res) {
-  const message = req.body.message;
+router.post('/heroku-deploy', function (req, res) {
+  const data = req.body;
 
   axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
-    chat_id: message.chat.id,
-    text: `Hello ${message.from.first_name}. You said "${message.text}" to me. `
-    + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers'
+    chat_id: 479142572,
+    text: `Heroku App "${data.app}" has been deployed sucessfully. Open app: ${data.url}. Last commit message: ${data.git_log}`
   }).then(response => {
     console.log(response);
     res.send('ok');
