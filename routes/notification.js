@@ -8,6 +8,7 @@ const axios = require('axios');
 
 const config = require('../config');
 const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY;
+const CHAT_ID = 479142572;
 
 router.get('/', function (req, res) {
   res.render('service-home', {
@@ -22,7 +23,7 @@ router.post('/heroku-deploy', function (req, res) {
   const data = req.body;
 
   axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
-    chat_id: 479142572,
+    chat_id: CHAT_ID,
     text: `Heroku App "${data.app}" has been deployed sucessfully. Open app: ${data.url}. Last commit message: ${data.git_log}`
   }).then(response => {
     console.log(response);
