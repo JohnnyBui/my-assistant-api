@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const chat = require('./routes/chat');
+const notification = require('./routes/notification');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/chat', chat);
+app.use('/notification', notification);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
