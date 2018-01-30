@@ -13,7 +13,8 @@ router.post('/new-message', function(req, res, next) {
 
   axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
     chat_id: message.chat.id,
-    text: `Hello world! I heard ${message.text}`
+    text: `Hello ${message.from.first_name}. You said "${message.text}" to me.
+      But my boss @johnnybui hasn't taught me what to do with that yet. Please let him know. Cheers!`
   }).then(response => {
       res.send('ok');
   }).catch(err => {
