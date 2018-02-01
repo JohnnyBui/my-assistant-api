@@ -58,17 +58,7 @@ router.post('/netlify-deploy/:state', (req, res) => {
 });
 
 router.get('/test', (req, res) => {
-  const options = {
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: 'Some button text 1', callback_data: '1' }],
-        [{ text: 'Some button text 2', callback_data: '2' }],
-        [{ text: 'Some button text 3', callback_data: '3' }]
-      ]
-    }
-  };
-
-  telegramBot.sendMessage(CHAT_ID, 'choose', options);
+  telegramBot.sendMessage(CHAT_ID, '`test`', { parse_mode: 'Markdown' });
   res.sendStatus(200);
 });
 

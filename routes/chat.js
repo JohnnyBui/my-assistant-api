@@ -43,9 +43,9 @@ telegramBot.on('message', msg => {
   };
 
   if (msg.text === '/start' || msg.text.trim().toLowerCase() === 'hi' || msg.text.trim().toLowerCase() === 'hello') {
-    telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. I'm Okos, your personal assistant. I can help you with chores on Telegram. `
+    telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. I'm *Okos*, your personal assistant. I can help you with chores on _Telegram_. `
     + 'Tap on a job below and I will show you how to have me do that job. If you need to request more job that I haven\'t leanred, please contact my father @johnnybui. '
-    + 'If you are a developer, please contribute to his project to teach me more wonderful job at https://github.com/JohnnyBui/my-assistant-api.');
+    + 'If you are a *developer*, please contribute to his project to teach me more wonderful job at [https://github.com/JohnnyBui/my-assistant-api].', { parse_mode: 'Markdown', disable_web_page_preview: true });
   }
 
   telegramBot.sendMessage(msg.chat.id, 'What can I do for you?', options);
@@ -59,10 +59,9 @@ telegramBot.on('callback_query', callbackQuery => {
   const msg = callbackQuery.message;
 
   if (data === 'gif') {
-    telegramBot.sendMessage(msg.chat.id, 'In any chat, including groups, type `@okosbot gif <keyword>`. I will show you relevant GIFs to choose and send.');
+    telegramBot.sendMessage(msg.chat.id, 'In any chat, including groups, type `@okosbot gif <keyword>`. I will show you relevant GIFs to choose and send.', { parse_mode: 'Markdown' });
   } else if (data === 'url') {
     telegramBot.sendMessage(msg.chat.id, 'I\'m learning this job. Check back soon!');
-    telegramBot.sendMessage(msg.chat.id, '', { parse_mode: '`test`' });
   } else {
     telegramBot.sendMessage(msg.chat.id, 'Sorry, I don\'t get it');
   }
