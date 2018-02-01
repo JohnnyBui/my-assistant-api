@@ -5,7 +5,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const config = require('../config');
 const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY || 'YOUR_TELEGRAM_BOT_API_KEY';
 
-const bot = new TelegramBot(TELEGRAM_BOT_API_KEY);
+const telegramBot = new TelegramBot(TELEGRAM_BOT_API_KEY);
 
 router.get('/', (req, res) => {
   res.render('service-home', {
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 router.post('/telegram-new-message', req => {
   const message = req.body.message;
 
-  bot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
+  telegramBot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
   + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
 });
 
