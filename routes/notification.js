@@ -24,7 +24,7 @@ router.post('/heroku-deploy', function (req, res) {
 
   axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
     chat_id: CHAT_ID,
-    text: `Heroku App "${data.app}" has been deployed sucessfully. Open app: ${data.url}`
+    text: `[Deployment] Heroku App "${data.app}" has been deployed. Open app: ${data.url}. Commit: ${data.head}. Release: ${data.release}.`
   }).then(response => {
     console.log(response);
     res.send('ok');

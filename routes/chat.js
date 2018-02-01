@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const TelegramBot = require('node-telegram-bot-api');
 
 const config = require('../config');
-const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY;
+const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY || 'YOUR_TELEGRAM_BOT_API_KEY';
 
-router.get('/', function (req, res) {
+const bot = new TelegramBot(TELEGRAM_BOT_API_KEY);
+
+router.get('/', (req, res) => {
   res.render('service-home', {
     title: `${config.ASSISTANT_NAME} Chat Service`,
     assistantName: config.ASSISTANT_NAME,
@@ -14,19 +16,11 @@ router.get('/', function (req, res) {
   });
 });
 
-router.post('/telegram-new-message', function (req, res) {
+router.post('/telegram-new-message', req => {
   const message = req.body.message;
 
-  axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_API_KEY}/sendMessage`, {
-    chat_id: message.chat.id,
-    text: `Hello ${message.from.first_name}. You said "${message.text}" to me. `
-    + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers'
-  }).then(response => {
-    console.log(response);
-    res.send('ok');
-  }).catch(err => {
-    res.send('Error :' + err);
-  });
+  bot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
+  + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
 });
 
 module.exports = router;
