@@ -44,7 +44,8 @@ telegramBot.on('message', msg => {
 
   if (msg.text === '/start' || msg.text.trim().toLowerCase() === 'hi' || msg.text.trim().toLowerCase() === 'hello') {
     telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. I'm Okos, your personal assistant. I can help you with chores on Telegram. `
-    + 'Tap on a job below and I will show you how to have me do that job. If you need to request more job that I haven\'t leanred, please contact my father @johnnybui.');
+    + 'Tap on a job below and I will show you how to have me do that job. If you need to request more job that I haven\'t leanred, please contact my father @johnnybui. '
+    + 'If you are a developer, please contribute to his project to teach me more wonderful job at https://github.com/JohnnyBui/my-assistant-api.');
   }
 
   telegramBot.sendMessage(msg.chat.id, 'What can I do for you?', options);
