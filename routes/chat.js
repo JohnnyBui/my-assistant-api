@@ -19,8 +19,8 @@ router.get('/', (req, res) => {
 router.post('/telegram-new-message', req => {
   const message = req.body.message;
 
-  telegramBot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
-  + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
+  // telegramBot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
+  // + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
 });
 
 module.exports = router;
