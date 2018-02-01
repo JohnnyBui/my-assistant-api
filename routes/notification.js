@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 router.post('/heroku-deploy', (req, res) => {
   const data = req.body;
 
-  telegramBot.sendMessage(CHAT_ID, `[Deployment] Heroku App "${data.app}" has been deployed. `
+  telegramBot.sendMessage(CHAT_ID, `[Heroku-Deploy] App "${data.app}" has been deployed. `
     + `Open app: ${data.url}. Commit: ${data.head}. Release: ${data.release}.`);
   res.sendStatus(200);
 });
@@ -41,15 +41,15 @@ router.post('/netlify-deploy/:state', (req, res) => {
   const data = req.body;
 
   if (state === 'started') {
-    telegramBot.sendMessage(CHAT_ID, `[Deployment][Started] Netlify App "${data.name}" has started deployment. `
+    telegramBot.sendMessage(CHAT_ID, `[Netlify-Deploy][Started] App "${data.name}" has started deployment. `
       + `Commit: (${data.commit_ref}) ${data.commit_url}.`);
     res.sendStatus(200);
   } else if (state === 'succeeded') {
-    telegramBot.sendMessage(CHAT_ID, `[Deployment][Succeeded] Netlify App "${data.name}" has been deployed. `
+    telegramBot.sendMessage(CHAT_ID, `[Netlify-Deploy][Succeeded] App "${data.name}" has been deployed. `
       + `Open app: ${data.ssl_url}. Commit: (${data.commit_ref}) ${data.commit_url}. Deploy Time: ${data.deploy_time}`);
     res.sendStatus(200);
   } else if (state === 'failed') {
-    telegramBot.sendMessage(CHAT_ID, `[Deployment][Failed] Netlify App "${data.name}" deployment has failed. `
+    telegramBot.sendMessage(CHAT_ID, `[Netlify-Deploy][Failed] App "${data.name}" deployment has failed. `
       + `Commit: (${data.commit_ref}) ${data.commit_url}. Error: ${data.error_message}. Deploy Time: ${data.deploy_time}`);
     res.sendStatus(200);
   } else {
