@@ -43,11 +43,28 @@ telegramBot.on('message', msg => {
   };
 
   if (msg.text === '/start' || msg.text.trim().toLowerCase() === 'hi' || msg.text.trim().toLowerCase() === 'hello') {
-    telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. I'm Okos, your personal assistant. I can help you with chores on Telegram.`
+    telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. I'm Okos, your personal assistant. I can help you with chores on Telegram. `
     + 'Tap on a job below and I will show you how to have me do that job. If you need to request more job that I haven\'t leanred, please contact my father @johnnybui.');
   }
 
   telegramBot.sendMessage(msg.chat.id, 'What can I do for you?', options);
+});
+
+/**
+ * Event on receiving callback query
+ */
+telegramBot.on('callback_query', callbackQuery => {
+  const data = callbackQuery.data;
+  const msg = callbackQuery.message;
+
+  if (data === 'gif') {
+    telegramBot.sendMessage(msg.chat.id, 'In any chat, including groups, type `@okosbot gif <keyword>`. I will show you relevant GIFs to choose and send.');
+  } else if (data === 'url') {
+    telegramBot.sendMessage(msg.chat.id, 'I\'m learning this job. Check back soon!');
+  } else {
+    telegramBot.sendMessage(msg.chat.id, 'Sorry, I don\'t get it');
+  }
+
 });
 
 /**
