@@ -7,6 +7,9 @@ const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY || 'YOUR_TELEGRAM_
 
 const telegramBot = new TelegramBot(TELEGRAM_BOT_API_KEY);
 
+// This informs the Telegram servers of the new webhook.
+telegramBot.setWebHook(`${config.URL}/chat/telegram-new-message`);
+
 router.get('/', (req, res) => {
   res.render('service-home', {
     title: `${config.ASSISTANT_NAME} Chat Service`,
@@ -16,6 +19,9 @@ router.get('/', (req, res) => {
   });
 });
 
+/**
+ * Receive message from Telegram, process it and response to sender
+ */
 router.post('/telegram-new-message', (req, res) => {
   const message = req.body.message;
 

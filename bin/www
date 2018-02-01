@@ -4,7 +4,7 @@
  * Get enviroment variables from .env if exist
  */
 
-require('dotenv').config()
+require('dotenv').config();
 
 /**
  * Module dependencies.
