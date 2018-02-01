@@ -58,7 +58,7 @@ router.post('/netlify-deploy/:state', (req, res) => {
 });
 
 router.get('/test', (req, res) => {
-  telegramBot.sendMessage(CHAT_ID, '`test`', { parse_mode: 'Markdown' });
+  telegramBot.sendMessage(CHAT_ID, '`test`\n newline', { parse_mode: 'Markdown' });
   res.sendStatus(200);
 });
 
