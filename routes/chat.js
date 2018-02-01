@@ -16,11 +16,12 @@ router.get('/', (req, res) => {
   });
 });
 
-router.post('/telegram-new-message', req => {
+router.post('/telegram-new-message', (req, res) => {
   const message = req.body.message;
 
-  // telegramBot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
-  // + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
+  telegramBot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
+    + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
+  res.sendStatus(200);
 });
 
 module.exports = router;
