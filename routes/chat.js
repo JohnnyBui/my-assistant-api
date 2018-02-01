@@ -20,14 +20,19 @@ router.get('/', (req, res) => {
 });
 
 /**
- * Receive message from Telegram, process it and response to sender
+ * Receive message from Telegram, process it for event emitter
  */
 router.post('/telegram-new-message', (req, res) => {
-  const message = req.body.message;
-
-  telegramBot.sendMessage(message.chat.id, `Hello ${message.from.first_name}. You said "${message.text}" to me. `
-    + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
+  telegramBot.processUpdate(req.body);
   res.sendStatus(200);
+});
+
+/**
+ * Event on receiving message, process and reply to sender
+ */
+telegramBot.on('message', msg => {
+  telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. You said "${msg.text}" to me. `
+    + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
 });
 
 module.exports = router;
