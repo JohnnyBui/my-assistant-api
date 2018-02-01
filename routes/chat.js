@@ -10,7 +10,7 @@ const TELEGRAM_BOT_API_KEY = process.env.TELEGRAM_BOT_API_KEY || 'YOUR_TELEGRAM_
 const telegramBot = new TelegramBot(TELEGRAM_BOT_API_KEY);
 
 // This informs the Telegram servers of the new webhook.
-telegramBot.setWebHook(`${config.URL}/chat/telegram-new-message`);
+telegramBot.setWebHook(`${config.URL}/chat/telegram`);
 
 router.get('/', (req, res) => {
   res.render('service-home', {
@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
 /**
  * Receive message from Telegram, process it for event emitter
  */
-router.post('/telegram-new-message', (req, res) => {
+router.post('/telegram', (req, res) => {
   telegramBot.processUpdate(req.body);
   res.sendStatus(200);
 });
@@ -33,8 +33,21 @@ router.post('/telegram-new-message', (req, res) => {
  * Event on receiving message, process and reply to sender
  */
 telegramBot.on('message', msg => {
-  telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. You said "${msg.text}" to me. `
-    + 'But my father @johnnybui hasn\'t taught me what to do with that yet. Please let him know. Cheers');
+  const options = {
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: 'Search GIFs', callback_data: 'gif' }],
+        [{ text: 'Shorten URL (comming soon)', callback_data: 'url' }]
+      ]
+    }
+  };
+
+  if (msg.text === '/start' || msg.text.trim().toLowerCase() === 'hi' || msg.text.trim().toLowerCase() === 'hello') {
+    telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}. I'm Okos, your personal assistant. I can help you with chores on Telegram.`
+    + 'Tap on a job below and I will show you how to have me do that job. If you need to request more job that I haven\'t leanred, please contact my father @johnnybui.');
+  }
+
+  telegramBot.sendMessage(msg.chat.id, 'What can I do for you?', options);
 });
 
 /**
@@ -47,7 +60,7 @@ telegramBot.on('inline_query', inlineQuery => {
     const query = _.replace(inlineQuery.query, 'gif ', '');
 
     // Search on Giphy
-    giphy.search(query, (err, res) => {
+    giphy.search({ q: query, limit: 10 }, (err, res) => {
       const gifs = [];
       for (const giphy of res.data) {
         const gif = {
