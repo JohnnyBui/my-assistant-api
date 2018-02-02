@@ -59,7 +59,7 @@ telegramBot.on('callback_query', callbackQuery => {
   const msg = callbackQuery.message;
 
   if (data === 'gif') {
-    telegramBot.sendMessage(msg.chat.id, 'In any chat, including groups, type `@okosbot gif <keyword>`. I will show you relevant GIFs to choose and send.', { parse_mode: 'Markdown' });
+    telegramBot.sendMessage(msg.chat.id, 'In any chat, including groups, type `@OkosBot gif <keyword>`. I will show you relevant GIFs to choose and send.', { parse_mode: 'Markdown' });
   } else if (data === 'url') {
     telegramBot.sendMessage(msg.chat.id, 'I\'m learning this job. Check back soon!');
   } else {
