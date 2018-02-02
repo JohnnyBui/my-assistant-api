@@ -32,7 +32,18 @@ router.post('/telegram', (req, res) => {
 /**
  * Event on receiving message, process and reply to sender
  */
+
 telegramBot.on('message', msg => {
+  // This if block is for personal use and experimental
+  if (msg.chat.type === 'group' && msg.chat.id === -296611794) {
+    const words = _.words(msg.text.toLowerCase());
+    if (_.includes(words, 'ngu', 'ox cko', 'ox cko\'', 'óc chó', 'oc cho', 'ok cko', 'ok cko\'', 'ox')) {
+      telegramBot.sendMessage(msg.chat.id, `*${msg.from.first_name} óc chó*`, { parse_mode: 'Markdown' });
+    } else if (_.includes(words, 'bot', 'okos') || msg.text.includes('bot')) {
+      telegramBot.sendMessage(msg.chat.id, '*Nói gì tao đới*', { parse_mode: 'Markdown' });
+    }
+  }
+
   const options = {
     reply_markup: {
       inline_keyboard: [
