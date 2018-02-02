@@ -42,6 +42,7 @@ telegramBot.on('message', msg => {
     } else if (_.includes(words, 'bot', 'okos') || msg.text.includes('bot')) {
       telegramBot.sendMessage(msg.chat.id, '*Nói gì tao đới*', { parse_mode: 'Markdown' });
     }
+    return;
   }
 
   const options = {
