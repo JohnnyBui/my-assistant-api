@@ -36,7 +36,9 @@ GIPHY_API_KEY=Your_Giphy_API_Key
 - If you deploy this project on live server, add those environment variables to your server config.
 
 ### Modify to use Okos as your personal assistant
-You can chat with [@BotFather](https://t.me/BotFather) to create new bot then set your bot's API Key to environment variable as instrunction above.
+- First, fork this repo.
+
+- You can chat with [@BotFather](https://t.me/BotFather) to create new bot then set your bot's API Key to environment variable as instrunction above.
 
 #### 1. Notification Service
 For your own notification services, implement them in `routes/notification.js`. Change `CHAT_ID` to the `chat_id` bewteen you and your bot. Then modify or implement HTTP webhooks to match your needs.
