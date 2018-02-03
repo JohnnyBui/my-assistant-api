@@ -62,7 +62,10 @@ telegramBot.on('message', msg => {
 if (msg.text === '/start' || msg.text.trim().toLowerCase() === 'hi' || msg.text.trim().toLowerCase() === 'hello') {
     telegramBot.sendMessage(msg.chat.id, `Hello ${msg.from.first_name}`);
 }
- ```
- Use `telegramBot.sendMessage` with `msg.chat.id` and message text to response to sender.
+```
+Use `telegramBot.sendMessage` with `msg.chat.id` and message text to response to sender.
  
- For more information about `message` object, modifying `inline_keyboard`, `callback_query` and everything else, checkout https://core.telegram.org/bots/api
+For more information about `message` object, modifying `inline_keyboard`, `callback_query` and everything else, checkout https://core.telegram.org/bots/api
+ 
+### Contribution
+Please help me to develop more services for this API. Any helpful service ideas are welcome. If you think we should change improve the structure, please let me know.
