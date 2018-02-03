@@ -10,7 +10,7 @@
 API Server: https://okos.phucbui.me
 
 ### What can Okos do?
-For the moment, Okos can send notifications to your Telegram. 
+For the moment, Okos can send notifications to your Telegram. Response to general chat/commands and search GIFs.
 
 ### Run
 `npm start` for local serving
