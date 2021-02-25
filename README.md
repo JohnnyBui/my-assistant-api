@@ -7,7 +7,7 @@
 ### Demo
 [@OkosBot](https://t.me/OkosBot)
 
-API Server: https://okos.phucbui.me
+API Server: https://okos.firefenix.cf
 
 ### What can Okos do?
 For the moment, Okos can send notifications to your Telegram. Response to general chat/commands and search GIFs.
